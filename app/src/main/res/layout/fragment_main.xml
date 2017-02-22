@@ -127,17 +127,28 @@
                         android:layout_width="fill_parent"
                         android:layout_height="40dp">
 
-                        <Spinner
+                        <!--<Spinner-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="40dp"-->
+                            <!--android:id="@+id/departure_cities_spinner"-->
+                            <!--android:entries="@array/cities"-->
+                            <!--android:layout_weight=".5"-->
+                            <!--android:layout_marginBottom="10dp"-->
+                            <!--android:background="@drawable/spinner_design"-->
+                            <!--android:clickable="false"-->
+                            <!--android:contextClickable="true"-->
+                            <!--android:minHeight="40dp" />-->
+                        <EditText
                             android:layout_width="fill_parent"
                             android:layout_height="40dp"
-                            android:id="@+id/departure_cities_spinner"
-                            android:entries="@array/cities"
-                            android:layout_weight=".5"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/spinner_design"
-                            android:clickable="false"
-                            android:contextClickable="true"
-                            android:minHeight="40dp" />
+                            android:id="@+id/departure_city_editText"
+                            android:inputType="text"
+                            android:clickable="true"
+                            android:paddingLeft="10dp"
+                            android:layout_weight=".3"
+                            android:background="@drawable/edittext_design"
+                            android:textSize="15dp" />
+
                     </FrameLayout>
                 </LinearLayout>
 
@@ -312,7 +323,7 @@
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".3">
+                    android:layout_weight=".27">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -327,16 +338,24 @@
                         android:layout_height="40dp"
                         android:paddingRight="10dp">
 
-                        <Spinner
+                        <!--<Spinner-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="fill_parent"-->
+                            <!--android:id="@+id/arriving_city_spinner"-->
+                            <!--android:entries="@array/visiting_cities"-->
+                            <!--android:layout_weight=".3"-->
+                            <!--android:background="@drawable/spinner_design"-->
+                            <!--android:minHeight="40dp" />-->
+                        <EditText
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:id="@+id/arriving_city_spinner"
-                            android:entries="@array/visiting_cities"
+                            android:layout_height="40dp"
+                            android:id="@+id/arriving_city_editText"
+                            android:inputType="text"
+                            android:clickable="true"
+                            android:paddingLeft="10dp"
                             android:layout_weight=".3"
-                            android:background="@drawable/spinner_design"
-                            android:minHeight="40dp" />
-
-
+                            android:background="@drawable/edittext_design"
+                            android:textSize="15dp" />
                     </FrameLayout>
                 </LinearLayout>
 
@@ -352,7 +371,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Arriving:"
                         android:id="@+id/arraving_desc"
-                        android:layout_weight=".3"
+                        android:layout_weight=".33"
                         android:textColor="#000000" />
 
                     <FrameLayout

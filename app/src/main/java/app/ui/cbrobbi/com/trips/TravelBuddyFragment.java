@@ -1,6 +1,5 @@
 package app.ui.cbrobbi.com.trips;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

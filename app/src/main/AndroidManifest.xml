@@ -28,31 +28,25 @@
         <activity
             android:name=".BuddyLayActivity"
             android:label="@string/app_name"
-            android:supportsRtl="true"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HotelUpgradeActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ChooseActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ImDoneActivity" />
         <activity
             android:name=".ShopingCartActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FlightListActivity"></activity>
     </application>
 
 </manifest>

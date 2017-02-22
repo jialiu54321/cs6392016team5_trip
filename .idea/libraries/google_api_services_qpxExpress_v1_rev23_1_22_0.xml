@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="google-api-services-qpxExpress-v1-rev23-1.22.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-qpxExpress/v1-rev23-1.22.0/4ba3d972a44e16d758eb6cba4322c57eee7d85e8/google-api-services-qpxExpress-v1-rev23-1.22.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-qpxExpress/v1-rev23-1.22.0/d72ec80791c170fd4a6c49d43cf3c577edbda629/google-api-services-qpxExpress-v1-rev23-1.22.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

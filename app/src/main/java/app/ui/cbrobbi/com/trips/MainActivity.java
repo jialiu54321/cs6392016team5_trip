@@ -42,8 +42,15 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.api.services.qpxExpress.model.PassengerCounts;
+import com.google.api.services.qpxExpress.model.SliceInput;
+import com.google.api.services.qpxExpress.model.TripOptionsRequest;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import utilities.FlightSearch;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -61,16 +68,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView dateViewBook3;
     private int year, month, day;
     TextView travelBuddy;
-    EditText nightsNumber,nights1,nights2, adult, children, room;
-    Spinner spinner_departure_cities;
+    EditText nightsNumber, nights1, nights2, adult, children, room;
+//    Spinner spinner_departure_cities;
+
     int count=0;
     int count2;
     int i;
     ArrayList <String> cities = new ArrayList();
     ArrayList <String> nights = new ArrayList();
     Spinner adltCntSpin, roomSpin, chldrnSpin;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -347,8 +353,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
+        dateView.setText(new StringBuilder().append(year).append("-").append(month).append("-").append(day));
     }
 
     private void showDate1(int year, int month, int day) {
@@ -700,14 +705,18 @@ public class MainActivity extends AppCompatActivity {
     //passing user's itinirary to a new activity
     public void im_done(View view) {
 
-        Spinner spinner_departure_cities = (Spinner) findViewById(R.id.departure_cities_spinner);
+//        Spinner spinner_departure_cities = (Spinner) findViewById(R.id.departure_cities_spinner);
+//        Spinner spinner_arriving_city = (Spinner) findViewById(R.id.arriving_city_spinner);
         Spinner spinner_cabin_class = (Spinner) findViewById(R.id.cabin_class_spinner);
         Spinner spinner_rooms_num = (Spinner) findViewById(R.id.room_num_spinner);
-        Spinner spinner_arriving_city = (Spinner) findViewById(R.id.arriving_city_spinner);
+
         TextView date_selected = (TextView) findViewById(R.id.date_selected);
+        EditText arriving_city = (EditText) findViewById(R.id.arriving_city_editText);
+        EditText departure_city = (EditText) findViewById(R.id.departure_city_editText);
         EditText adults_num = (EditText) findViewById(R.id.adultNumber);
         EditText children_num = (EditText) findViewById(R.id.childrenNumber);
         EditText nights_num = (EditText) findViewById(R.id.nightNumber);
+
         TextView adults_error_message = (TextView) findViewById(R.id.adults_error_message);
         TextView nights_error_message = (TextView) findViewById(R.id.nights_error_message);
 
@@ -730,8 +739,7 @@ public class MainActivity extends AppCompatActivity {
             else if (children_num.getText().toString().matches(""))
             {
                 children_num.setText("0");
-            }
-        else{
+            } else {
             for (int i = 0; i < count; i++) {
                 //LinearLayout child_layout = (LinearLayout) findViewById(i);
                 EditText child_text = (EditText) findViewById(i+1);
@@ -749,27 +757,43 @@ public class MainActivity extends AppCompatActivity {
             nights.add(0,nights_num.getText().toString());
 
 
-            Intent imDoneIntent = new Intent(this, ImDoneActivity.class);
-            imDoneIntent.putExtra("departure_city", spinner_departure_cities.getSelectedItem().toString());
-            imDoneIntent.putExtra("cabin_class", spinner_cabin_class.getSelectedItem().toString());
-            imDoneIntent.putExtra("rooms_num", spinner_rooms_num.getSelectedItem().toString());
-            imDoneIntent.putExtra("arriving_city", spinner_arriving_city.getSelectedItem().toString());
-            imDoneIntent.putExtra("selected_date", date_selected.getText().toString());
-            imDoneIntent.putExtra("adults_number", Integer.parseInt(adults_num.getText().toString()));
-            imDoneIntent.putExtra("children_number", Integer.parseInt(children_num.getText().toString()));
-            imDoneIntent.putExtra("nights_number", Integer.parseInt(nights_num.getText().toString()));
-            imDoneIntent.putExtra("mylist_nights", nights);
-            imDoneIntent.putExtra("mylist_cities",cities);
+//            Intent imDoneIntent = new Intent(this, ImDoneActivity.class);
+//            imDoneIntent.putExtra("departure_city", spinner_departure_cities.getSelectedItem().toString());
+//            imDoneIntent.putExtra("cabin_class", spinner_cabin_class.getSelectedItem().toString());
+//            imDoneIntent.putExtra("rooms_num", spinner_rooms_num.getSelectedItem().toString());
+//            imDoneIntent.putExtra("arriving_city", spinner_arriving_city.getSelectedItem().toString());
+//            imDoneIntent.putExtra("selected_date", date_selected.getText().toString());
+//            imDoneIntent.putExtra("adults_number", Integer.parseInt(adults_num.getText().toString()));
+//            imDoneIntent.putExtra("children_number", Integer.parseInt(children_num.getText().toString()));
+//            imDoneIntent.putExtra("nights_number", Integer.parseInt(nights_num.getText().toString()));
+//            imDoneIntent.putExtra("mylist_nights", nights);
+//            imDoneIntent.putExtra("mylist_cities",cities);
+//
+//            startActivity(imDoneIntent);
+//            nights.clear();
+//            cities.clear();
 
-            startActivity(imDoneIntent);
-            nights.clear();
-            cities.clear();
+
+            //prepare a request
+            PassengerCounts passengers = new PassengerCounts();
+            passengers.setAdultCount(Integer.parseInt(adults_num.getText().toString()));
+
+            List<SliceInput> slices = new ArrayList<>();
+            SliceInput slice = new SliceInput();
+            slice.setOrigin(departure_city.getText().toString());
+            slice.setDestination(arriving_city.getText().toString());
+            slice.setDate(date_selected.getText().toString());
+            slices.add(slice);
+
+            TripOptionsRequest request = new TripOptionsRequest();
+            request.setSolutions(20);
+            request.setPassengers(passengers);
+            request.setSlice(slices);
+
+            FlightSearch flightSearch = new FlightSearch(this.getApplicationContext());
+            flightSearch.execute(request);
         }
-
-
-    }}
-
-
-
+    }
+}
 
 

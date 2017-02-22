@@ -9,9 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="app.ui.cbrobbi.com.trips.TravelBuddyFragment"
     android:background="@drawable/main_page_background_design">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ScrollView
             android:layout_width="wrap_content"

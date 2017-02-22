@@ -13,11 +13,11 @@
     <string name="ccTyp">Type:</string>
     <string name="ccNbr">Card Number</string>
     <string-array name="cards">
-    <item>Mastercard</item>
-    <item>American Express</item>
-    <item>Discover Card</item>
-    <item>Visa</item>
-    <item>Diners Club</item>
+        <item>Mastercard</item>
+        <item>American Express</item>
+        <item>Discover Card</item>
+        <item>Visa</item>
+        <item>Diners Club</item>
     </string-array>
     <string-array name="cities">
         <item>Montgomery, AL</item>
@@ -162,4 +162,8 @@
     <string name="bookItDate2"></string>
     <string name="bookItDate3"></string>
     <string name="title_activity_shoping_cart">Trip_Guru</string>
+
+    <string name="title_activity_flight_list">flight_list</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
