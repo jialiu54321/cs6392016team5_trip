@@ -721,25 +721,23 @@ public class MainActivity extends AppCompatActivity {
         TextView nights_error_message = (TextView) findViewById(R.id.nights_error_message);
 
         if ((adults_num.getText().toString()).matches("")){
-            adults_error_message.setText("Enter a number!");}
-
-            else if( (nights_num.getText().toString()).matches("") ){
-
-            nights_error_message.setText("Enter a number!");
-            }
+                adults_error_message.setText("Enter a number!");
+//        }  else if( (nights_num.getText().toString()).matches("") ){
+//            nights_error_message.setText("Enter a number!");
+        }
             else if (Integer.parseInt(adults_num.getText().toString()) < 1)
-            {
-                adults_error_message.setText("Add atleast 1 adult!");
-            }
-
-            else if(Integer.parseInt(nights_num.getText().toString()) < 1)
-            {
-                nights_error_message.setText("Atleast 1 Night!");
-            }
+        {
+            adults_error_message.setText("Add atleast 1 adult!");
+        }
+//            else if (Integer.parseInt(nights_num.getText().toString()) < 1)
+//        {
+//            nights_error_message.setText("Atleast 1 Night!");
+//        }
             else if (children_num.getText().toString().matches(""))
-            {
-                children_num.setText("0");
-            } else {
+        {
+            children_num.setText("0");
+        } else {
+
             for (int i = 0; i < count; i++) {
                 //LinearLayout child_layout = (LinearLayout) findViewById(i);
                 EditText child_text = (EditText) findViewById(i+1);

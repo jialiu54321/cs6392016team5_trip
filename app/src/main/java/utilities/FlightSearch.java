@@ -38,6 +38,8 @@ public class FlightSearch extends AsyncTask<TripOptionsRequest, Void, List<TripO
         }
 
         Intent flightListIntent = new Intent(context.getApplicationContext(), FlightListActivity.class);
+        //show only one item (the default item) in the list, the first item of the search result is the used as default
+        flightListIntent.putExtra("showDefault", true);
 
         TempData td = TempData.getInstance();
 
@@ -49,5 +51,7 @@ public class FlightSearch extends AsyncTask<TripOptionsRequest, Void, List<TripO
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+
+        Toast.makeText(context, "Searching...", Toast.LENGTH_LONG).show();
     }
 }

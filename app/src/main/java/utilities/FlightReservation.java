@@ -60,7 +60,11 @@ public class FlightReservation {
             TripsSearchResponse list = qpxExpress.trips().search(parameters).execute();
             List<TripOption> tripResult = list.getTrips().getTripOption();
 
-            Log.v("FlightReservation", tripResult.get(0).toString());
+            if (tripResult == null || tripResult.size() == 0) {
+                Log.v("FlightReservation", "search failed");
+            } else {
+                Log.v("FlightReservation", tripResult.get(0).toString());
+            }
 
             return tripResult;
 

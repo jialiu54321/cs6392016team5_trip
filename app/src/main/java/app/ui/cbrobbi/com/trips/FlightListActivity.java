@@ -2,6 +2,7 @@ package app.ui.cbrobbi.com.trips;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.google.api.services.qpxExpress.model.SegmentInfo;
 import com.google.api.services.qpxExpress.model.SliceInfo;
 import com.google.api.services.qpxExpress.model.TripOption;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import utilities.QPXHelper;
@@ -36,9 +39,24 @@ public class FlightListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.flight_listview);
 
-        TempData td = TempData.getInstance();
+//        listView.setBackgroundColor(Color.parseColor("#fffcf0"));
 
-        listView.setAdapter(new flightListViewAdapter(this.getApplicationContext(), td.tripResult));
+        TempData td = TempData.getInstance();;
+        List<TripOption> tripResult;
+
+        if (getIntent().getBooleanExtra("showDefault", false)) {
+            tripResult = new ArrayList<>(1);
+            tripResult.add(td.tripResult.get(0));
+
+            View footer = getLayoutInflater().inflate(R.layout.fragment_flight_list_footer, null);
+            View header = getLayoutInflater().inflate(R.layout.fragment_flight_list_header, null);
+            listView.addFooterView(footer);
+            listView.addHeaderView(header);
+        } else {
+            tripResult = td.tripResult;
+        }
+
+        listView.setAdapter(new flightListViewAdapter(this.getApplicationContext(), tripResult));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,6 +120,13 @@ public class FlightListActivity extends AppCompatActivity {
 
             return rowView;
         }
+    }
 
+    public void startFullList (View view) {
+        Intent intent = new Intent(this.getApplicationContext(), FlightListActivity.class);
+        //show full list
+        intent.putExtra("showDefault", false);
+
+        startActivity(intent);
     }
 }
