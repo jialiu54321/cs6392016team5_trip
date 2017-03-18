@@ -41,7 +41,7 @@ public class FlightListActivity extends AppCompatActivity {
 
 //        listView.setBackgroundColor(Color.parseColor("#fffcf0"));
 
-        TempData td = TempData.getInstance();;
+        TempData td = TempData.getInstance();
         List<TripOption> tripResult;
 
         if (getIntent().getBooleanExtra("showDefault", false)) {
