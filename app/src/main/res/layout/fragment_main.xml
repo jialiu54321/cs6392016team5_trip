@@ -498,7 +498,7 @@
                             android:layout_weight=".5"
                             android:textColor="#ffffff"
                             android:background="@drawable/button_design"
-                            android:onClick="add_city"/>
+                            android:onClick="add_city" />
                     </FrameLayout>
                 </LinearLayout>
                 <LinearLayout

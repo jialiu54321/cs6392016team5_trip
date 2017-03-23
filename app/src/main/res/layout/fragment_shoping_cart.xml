@@ -12,6 +12,7 @@
     tools:context="app.ui.cbrobbi.com.trips.ShopingCartActivityFragment"
     tools:showIn="@layout/activity_shoping_cart"
     android:background="@drawable/main_page_background_design">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,6 +27,7 @@
                 android:orientation="vertical"
                 android:id="@+id/itemList"
                 android:layout_alignParentTop="true">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -46,7 +46,12 @@
             android:name=".ShopingCartActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FlightListActivity"></activity>
+        <activity android:name=".FlightListActivity" />
+        <activity
+            android:name=".CarSearchActivity"
+            android:label="@string/title_activity_car_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CarListActivity"></activity>
     </application>
 
 </manifest>

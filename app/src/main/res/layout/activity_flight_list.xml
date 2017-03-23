@@ -3,12 +3,37 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="match_parent">
+android:layout_height="match_parent"
+    android:paddingRight="2dp"
+    android:paddingLeft="2dp">
 
-<ListView
+
+<LinearLayout
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:name="app.ui.cbrobbi.com.trips.TravelBuddyFragment"
-    android:id="@+id/flight_listview" />
+    android:id="@+id/search_mainView" >
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="app.ui.cbrobbi.com.trips.TravelBuddyFragment"
+        android:id="@+id/flight_listview"
+        android:layout_marginBottom="20px"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/car_listview" >
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add a Car to your Deal"
+            android:id="@+id/book_car"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_design"
+            />
+    </LinearLayout>
+</LinearLayout>
 
 </LinearLayout>

@@ -43,6 +43,7 @@ public class FlightSearch extends AsyncTask<TripOptionsRequest, Void, List<TripO
 
         TempData td = TempData.getInstance();
 
+        td.curtOrder = new Order(0);
         td.tripResult = tripResult;
 
         context.startActivity(flightListIntent);

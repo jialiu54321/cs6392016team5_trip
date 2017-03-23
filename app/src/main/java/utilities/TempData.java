@@ -14,7 +14,8 @@ public class TempData {
 
     private static TempData instance;
 
-    private TempData() {}
+    private TempData() {
+    }
 
     public static synchronized TempData getInstance(){
         if(instance == null){
@@ -24,4 +25,5 @@ public class TempData {
     }
 
     public List<TripOption> tripResult;
+    public Order curtOrder;
 }

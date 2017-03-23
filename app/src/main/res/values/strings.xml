@@ -112,6 +112,19 @@
         <item>Coach</item>
     </string-array>
 
+    <string-array name="carTypes">
+        <item>Mini</item>
+        <item>Economy</item>
+        <item>Compact</item>
+        <item>Midsize</item>
+        <item>Standard</item>
+        <item>Full Size</item>
+        <item>Premium</item>
+        <item>Luxury</item>
+        <item>Convertible</item>
+        <item>SUV</item>
+    </string-array>
+
 
     <string-array name="flyingTo">
         <item>Boston</item>
@@ -166,4 +179,5 @@
     <string name="title_activity_flight_list">flight_list</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_car_search">CarSearchActivity</string>
 </resources>

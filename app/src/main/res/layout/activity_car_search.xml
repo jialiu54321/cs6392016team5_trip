@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search for a car: "
+        android:gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textColor="#039"
+        android:shadowColor="#3524cc"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Pick up:"
+                android:layout_weight=".5"
+                android:textColor="#000000" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:paddingRight="10dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".3">
+
+                    <TextView
+                        android:id="@+id/pickup_date_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_selected"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        android:clickable="true"
+                        android:onClick="setPickupDate" />
+                    <Button
+                        android:id="@+id/pickup_date_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/ic_calendar"
+                        android:onClick="setPickupDate" />
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Drop off:"
+                android:id="@+id/arraving_desc"
+                android:layout_weight=".5"
+                android:textColor="#000000" />
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:paddingRight="10dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".3">
+
+                    <TextView
+                        android:id="@+id/dropoff_date_selected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:clickable="true"
+                        android:onClick="setDropoffDate"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                    <Button
+                        android:id="@+id/dropoff_date_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/ic_calendar"
+                        android:onClick="setDropoffDate" />
+                </LinearLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose car type: "
+        android:layout_marginBottom="2dp"
+        android:textColor="#000000"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <FrameLayout
+        android:layout_width="350px"
+        android:layout_height="40dp">
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/car_type_spinner"
+            android:entries="@array/carTypes"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/spinner_design"
+            android:minHeight="40dp" />
+    </FrameLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/search_car"
+        android:textColor="#ffffff"
+        android:nestedScrollingEnabled="false"
+        android:background="@drawable/button_design"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>

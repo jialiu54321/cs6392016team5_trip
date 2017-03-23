@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/flight_list_row"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            android:id="@+id/car_list_img"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="car information"
+                android:layout_marginTop="10dp"
+                android:id="@+id/car_list_info" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="$50/day"
+                android:layout_marginTop="10dp"
+                android:id="@+id/car_list_price" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

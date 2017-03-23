@@ -25,12 +25,15 @@ import com.google.api.services.qpxExpress.model.TripOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import utilities.CarOrder;
 import utilities.QPXHelper;
 import utilities.TempData;
 
 public class FlightListActivity extends AppCompatActivity {
 
     private ListView listView;
+    private Button book_car_btn;
+    private boolean showDefault;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +41,18 @@ public class FlightListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flight_list);
 
         listView = (ListView) findViewById(R.id.flight_listview);
+        book_car_btn = (Button) findViewById(R.id.book_car);
 
 //        listView.setBackgroundColor(Color.parseColor("#fffcf0"));
 
         TempData td = TempData.getInstance();
         List<TripOption> tripResult;
 
-        if (getIntent().getBooleanExtra("showDefault", false)) {
+        showDefault = getIntent().getBooleanExtra("showDefault", false);
+
+        if (showDefault) {
             tripResult = new ArrayList<>(1);
-            tripResult.add(td.tripResult.get(0));
+            tripResult.add(td.tripResult.get(td.curtOrder.getFlightIndex()));
 
             View footer = getLayoutInflater().inflate(R.layout.fragment_flight_list_footer, null);
             View header = getLayoutInflater().inflate(R.layout.fragment_flight_list_header, null);
@@ -54,18 +60,31 @@ public class FlightListActivity extends AppCompatActivity {
             listView.addHeaderView(header);
         } else {
             tripResult = td.tripResult;
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(FlightListActivity.this, FlightListActivity.class);
+
+                    TempData td = TempData.getInstance();
+                    td.curtOrder.setFlightIndex(position);
+                    intent.putExtra("showDefault", true);
+                    finish();
+                    startActivity(intent);
+                }
+            });
         }
 
         listView.setAdapter(new flightListViewAdapter(this.getApplicationContext(), tripResult));
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        book_car_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(FlightListActivity.this, ImDoneActivity.class);
-                intent.putExtra("position", position);
+            public void onClick(View v) {
+                Intent intent = new Intent(FlightListActivity.this, CarSearchActivity.class);
                 startActivity(intent);
             }
         });
+
     }
 
     private class flightListViewAdapter extends ArrayAdapter {
