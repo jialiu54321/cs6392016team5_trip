@@ -51,6 +51,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import utilities.FlightSearch;
+import utilities.TempData;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -766,6 +767,10 @@ public class MainActivity extends AppCompatActivity {
 //            nights.clear();
 //            cities.clear();
 
+
+            TempData td = TempData.getInstance();
+            td.adult_num = new Integer(adults_num.getText().toString());
+            td.child_num = new Integer(children_num.getText().toString());
 
             //prepare a request
             PassengerCounts passengers = new PassengerCounts();

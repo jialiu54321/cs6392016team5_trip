@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import com.google.api.services.qpxExpress.model.TripOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import utilities.Car;
 import utilities.CarOrder;
 import utilities.QPXHelper;
 import utilities.TempData;
@@ -34,6 +37,8 @@ public class FlightListActivity extends AppCompatActivity {
     private ListView listView;
     private Button book_car_btn;
     private boolean showDefault;
+    private LinearLayout car_result_container;
+    private Button check_out_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,8 @@ public class FlightListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.flight_listview);
         book_car_btn = (Button) findViewById(R.id.book_car);
+        car_result_container = (LinearLayout) findViewById(R.id.car_result_container);
+        check_out_btn = (Button) findViewById(R.id.check_out);
 
 //        listView.setBackgroundColor(Color.parseColor("#fffcf0"));
 
@@ -68,6 +75,7 @@ public class FlightListActivity extends AppCompatActivity {
 
                     TempData td = TempData.getInstance();
                     td.curtOrder.setFlightIndex(position);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("showDefault", true);
                     finish();
                     startActivity(intent);
@@ -75,16 +83,56 @@ public class FlightListActivity extends AppCompatActivity {
             });
         }
 
+        if (td.curtOrder.getCarOrder() != null) {
+            book_car_btn.setVisibility(View.GONE);
+
+            LayoutInflater inflater = (LayoutInflater) this.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View carView = inflater.inflate(R.layout.rowlayout_car_list, null);
+            carView.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TempData td = TempData.getInstance();
+                        td.curtOrder.setCarOrder(new CarOrder());
+
+                        Intent intent = new Intent(FlightListActivity.this, CarSearchActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+            ImageView carImg = (ImageView) carView.findViewById(R.id.car_list_img);
+            TextView car_list_info = (TextView) carView.findViewById(R.id.car_list_info);
+            TextView car_list_price = (TextView) carView.findViewById(R.id.car_list_price);
+
+            Car car = td.curtOrder.getCarOrder().getCar();
+
+            carImg.setBackground(this.getApplicationContext().getDrawable(car.getCarImg()));
+            car_list_info.setText(car.getCarBrand().getName() + " " + car.getCarModel().getName());
+            car_list_price.setText("$" + car.getPrice() + ".00 / Day");
+
+            car_result_container.addView(carView);
+        }
+
         listView.setAdapter(new flightListViewAdapter(this.getApplicationContext(), tripResult));
 
         book_car_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TempData td = TempData.getInstance();
+                td.curtOrder.setCarOrder(new CarOrder());
+
                 Intent intent = new Intent(FlightListActivity.this, CarSearchActivity.class);
                 startActivity(intent);
             }
         });
 
+        check_out_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FlightListActivity.this, ImDoneActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private class flightListViewAdapter extends ArrayAdapter {

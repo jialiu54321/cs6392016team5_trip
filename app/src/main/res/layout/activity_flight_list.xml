@@ -24,7 +24,7 @@ android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/car_listview" >
+        android:id="@+id/car_result_container" >
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -34,6 +34,15 @@ android:layout_height="match_parent"
             android:background="@drawable/button_design"
             />
     </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Check Out"
+        android:id="@+id/check_out"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_design"
+        />
 </LinearLayout>
 
 </LinearLayout>

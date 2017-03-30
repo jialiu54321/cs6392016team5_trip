@@ -162,6 +162,6 @@ public class CarSearchActivity extends AppCompatActivity {
     };
 
     private String formatDate(Date d) {
-        return new StringBuilder().append(d.getYear()).append("-").append(d.getMonth()).append("-").append(d.getDay()).toString();
+        return new StringBuilder().append(d.getYear()).append("-").append(d.getMonth()).append("-").append(d.getDate()).toString();
     }
 }

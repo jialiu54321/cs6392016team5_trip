@@ -97,16 +97,17 @@
                             <FrameLayout
                                 android:layout_width="fill_parent"
                                 android:layout_height="match_parent">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/total_price"
-                                android:text="total price"
-                                android:textSize="25dp"
-                                android:textColor="#0065B8"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textIsSelectable="false"
-                                android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/total_price"
+                                    android:text="total price"
+                                    android:textSize="25dp"
+                                    android:textColor="#0065B8"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textIsSelectable="false"
+                                    android:textStyle="bold" />
                             </FrameLayout>
 
                             <FrameLayout
@@ -150,7 +151,19 @@
                                     android:textStyle="bold"
                                     android:textColor="#000000" />
                             </FrameLayout>
-
+                            <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="Medium Text"
+                                android:id="@+id/car_info"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:textColor="#000000" />
+                        </FrameLayout>
                         </LinearLayout>
 
                 </LinearLayout>

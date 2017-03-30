@@ -12,7 +12,6 @@ public class Order {
 
     public Order(int flightIndex) {
         this.flightIndex = flightIndex;
-        this.carOrder =  new CarOrder();
     }
 
     public int getFlightIndex() {

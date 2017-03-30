@@ -11,7 +11,7 @@ public class Car {
     private int carImg;
     private int price;
 
-    public Car(CarData.CarBrand carBrand, int carImgId, CarData.CarModel carModel, CarData.CarType carType, int price) {
+    public Car(CarData.CarBrand carBrand, int carImg, CarData.CarModel carModel, CarData.CarType carType, int price) {
         this.carBrand = carBrand;
         this.carImg = carImg;
         this.carModel = carModel;

@@ -1,6 +1,7 @@
 package app.ui.cbrobbi.com.trips;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import utilities.Car;
 import utilities.CarData;
+import utilities.CarOrder;
 import utilities.TempData;
 
 public class CarListActivity extends AppCompatActivity {
@@ -49,10 +51,23 @@ public class CarListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                td = TempData.getInstance();
+                cd = CarData.getInstance();
+                ArrayList<Car> carList = cd.getCarMap().get(td.curtOrder.getCarOrder().getCarType());
+                Car car = carList.get(position);
+
+                //update order
+                CarOrder co = td.curtOrder.getCarOrder();
+                co.setCar(car);
+
+                Intent intent = new Intent(CarListActivity.this, FlightListActivity.class);
+
+                intent.putExtra("showDefault", true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+                startActivity(intent);
             }
         });
-
-
     }
 
     private class CarListViewAdapter extends ArrayAdapter {
@@ -81,12 +96,8 @@ public class CarListActivity extends AppCompatActivity {
             Car car = cars.get(position);
 
             Log.i("car.getCarImg()", car.getCarImg() + "");
-            if (car.getCarImg() != 0) {
-                carImg.setBackground(context.getDrawable(car.getCarImg()));
-            } else {
-                carImg.setBackground(context.getDrawable(R.drawable.luxury_convertible_bmw4series));
-            }
-//            carImg.setImageResource(car.getCarImg());
+
+            carImg.setBackground(context.getDrawable(car.getCarImg()));
             car_list_info.setText(car.getCarBrand().getName() + " " + car.getCarModel().getName());
             car_list_price.setText("$" + car.getPrice() + ".00 / Day");
 

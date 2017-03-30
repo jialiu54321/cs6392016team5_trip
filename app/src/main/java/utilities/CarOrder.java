@@ -57,4 +57,8 @@ public class CarOrder {
         Log.i("Days: ", diff + "");
         return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
+
+    public int getTotalPrice () {
+        return car.getPrice() * getDays();
+    }
 }

@@ -15,6 +15,8 @@ public class TempData {
     private static TempData instance;
 
     private TempData() {
+        adult_num = 1;
+        child_num = 0;
     }
 
     public static synchronized TempData getInstance(){
@@ -26,4 +28,6 @@ public class TempData {
 
     public List<TripOption> tripResult;
     public Order curtOrder;
+    public int adult_num;
+    public int child_num;
 }

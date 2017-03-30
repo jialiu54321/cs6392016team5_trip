@@ -47,7 +47,7 @@ public class ImDoneActivity extends AppCompatActivity {
         LinearLayout parent_layout1 = (LinearLayout) findViewById(R.id.parent_layout2);
 
         TempData td = TempData.getInstance();
-        int position = Integer.parseInt(getIntent().getExtras().get("position").toString());
+        int position = td.curtOrder.getFlightIndex();
         TripOption option = td.tripResult.get(position);
         QPXHelper qpxHelper = new QPXHelper(option);
 
@@ -67,6 +67,7 @@ public class ImDoneActivity extends AppCompatActivity {
 //
 //        String nights_num_entry = Integer.toString(getIntent().getExtras().getInt("nights_number"));
 
+
         String departure_city_entry = qpxHelper.getDeparture_city();
 
         String cabin_class_entry = "First";
@@ -77,14 +78,17 @@ public class ImDoneActivity extends AppCompatActivity {
 
         String selected_date_entry = qpxHelper.getDeparture_time();
 
-        String adults_num_entry = "1";
+//        String adults_num_entry = "1";
+        String adults_num_entry = td.adult_num + "";
 
-        String children_num_entry = "1";
+//        String children_num_entry = "1";
+        String children_num_entry = td.child_num + "";
 
         String nights_num_entry = "1";
 
         TextView adults_num = (TextView) findViewById(R.id.adults_num);
         TextView children_num = (TextView) findViewById(R.id.children_num);
+        TextView car_info = (TextView) findViewById(R.id.car_info);
         adults_num.setText("for " + adults_num_entry + " Adult(s), ");
         children_num.setText(children_num_entry + " Child(ren)");
 
@@ -92,6 +96,9 @@ public class ImDoneActivity extends AppCompatActivity {
         deparure_city.setText(departure_city_entry);
         TextView arrival_city = (TextView) findViewById(R.id.arrival_city);
         arrival_city.setText(arriving_city_entry);
+        car_info.setText("Car rental: " + td.curtOrder.getCarOrder().getCar().getCarModel().getName() + " for $"
+                + td.curtOrder.getCarOrder().getCar().getPrice() + ".00 per day for "
+                + td.curtOrder.getCarOrder().getDays() + " days");
 
 //        TextView arrival_city2 = (TextView) findViewById(R.id.arrival_city2 );
 //        arrival_city2.setText(departure_city_entry);
@@ -99,7 +106,10 @@ public class ImDoneActivity extends AppCompatActivity {
 //        deparure_city2.setText(arriving_city_entry);
 
         TextView total = (TextView) findViewById(R.id.total);
-        total.setText(qpxHelper.getPrice());
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+
+        total.setText("$" + df.format(Float.valueOf(qpxHelper.getPrice().substring(1)) + (float) td.curtOrder.getCarOrder().getTotalPrice()) + "");
 
         String allItems = "";
         ArrayList<String> myList_nights = (ArrayList<String>) getIntent().getSerializableExtra("mylist_nights");
@@ -337,10 +347,6 @@ public class ImDoneActivity extends AppCompatActivity {
             return a[n];}
         else{
             return a[n] + sumOfArray(a, n-1);}
-
-
-
-
     }
 
 
